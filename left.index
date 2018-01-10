@@ -1,0 +1,41 @@
+@(攻城狮)
+### ajax 跨域
+##### ajax跨域的原理
+ajax出现请求跨域错误问题,主要原因就是因为浏览器的“同源策略”
+[同源策略原理](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
+所谓"同源"指的是"三个相同"：
+1.协议相同
+2.域名相同
+3.端口相同
+##### CORS请求原理
+CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制
+##### ajax跨域的表现
+[ajax跨域表现](https://juejin.im/post/5a3770e6518825127e7456a4?utm_source=gold_browser_extension)
+##### 如何解决ajax跨域
+**1.JSONP方式解决跨域问题**
+**2.CORS解决跨域问题**
+PHP后台配置
+
+	 第一步:配置Php 后台允许跨域
+     <?php
+     header('Access-Control-Allow-Origin: *');
+     header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+     //主要为跨域CORS配置的两大基本信息,Origin和headers
+     第二步:配置Apache web服务器跨域(httpd.conf中)
+     原始代码
+     <Directory />
+    AllowOverride none
+    Require all denied
+	</Directory>
+	
+	改为以下代码：
+	<Directory />
+    Options FollowSymLinks
+    AllowOverride none
+    Order deny,allow
+    Allow from all
+	</Directory>
+	
+
+[ajax跨域详情](https://juejin.im/post/5a3770e6518825127e7456a4?utm_source=gold_browser_extension)
+
